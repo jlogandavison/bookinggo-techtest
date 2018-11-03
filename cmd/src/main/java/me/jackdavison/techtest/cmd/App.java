@@ -6,19 +6,19 @@ import java.util.Arrays;
 import me.jackdavison.techtest.client.Provider;
 import me.jackdavison.techtest.client.types.Location;
 import me.jackdavison.techtest.client.types.Ride;
+import me.jackdavison.techtest.cmd.OutputBuilder;
+import me.jackdavison.techtest.cmd.RideListOutputBuilder;
 
-/**
- * Hello world!
- *
- */
 public class App implements Provider
 {
+
+    private static OutputBuilder outputbuilder = new RideListOutputBuilder();
+
     public static void main( String[] args )
     {
-        System.out.println(new App().getRides(
-            new Location(0,0),
-            new Location(1,1)
-        ));
+        String output = outputbuilder.buildOutput(
+            new App().getRides(null, null));
+        System.out.println(output);
     }
 
     public ArrayList<Ride> getRides(Location lat, Location lng) {
