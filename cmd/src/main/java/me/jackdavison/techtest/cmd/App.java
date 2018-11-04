@@ -2,6 +2,8 @@ package me.jackdavison.techtest.cmd;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import me.jackdavison.techtest.client.Provider;
 import me.jackdavison.techtest.client.types.Location;
@@ -16,9 +18,9 @@ public class App implements Provider
 
     public static void main( String[] args )
     {
-        String output = outputbuilder.buildOutput(
-            new App().getRides(null, null));
-        System.out.println(output);
+        List<Ride> rides = new App().getRides(null, null);
+        Collections.sort(rides, new Ride.PriceComparator());
+        System.out.println(outputbuilder.buildOutput(rides));
     }
 
     public ArrayList<Ride> getRides(Location lat, Location lng) {
