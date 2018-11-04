@@ -9,6 +9,10 @@ public final class Location {
         this.longitude = lng;
     }
 
+    public String toString() {
+        return String.format("%f,%f", this.latitude, this.longitude);
+    }
+
     public static Location parseLocation(String input)
             throws LocationFormatException {
 

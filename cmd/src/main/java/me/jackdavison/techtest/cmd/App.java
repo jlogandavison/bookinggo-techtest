@@ -1,10 +1,13 @@
 package me.jackdavison.techtest.cmd;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import me.jackdavison.techtest.client.HttpApiProvider;
 import me.jackdavison.techtest.client.Provider;
 import me.jackdavison.techtest.client.types.Location;
 import me.jackdavison.techtest.client.types.Ride;
@@ -14,13 +17,15 @@ import me.jackdavison.techtest.cmd.RideListOutputBuilder;
 public class App implements Provider
 {
 
-    private static Provider provider = new App();
+    private static Provider provider;
     private static OutputBuilder outputbuilder = new RideListOutputBuilder();
 
-    public static void main( String[] args )
+    public static void main( String[] args ) throws URISyntaxException
     {
+        provider = new HttpApiProvider(new URI("https://techtest.rideways.com/dave/"));
+
         // Parse commandline input
-        Location pickup, dropoff;
+        Location pickup = null, dropoff = null;
         try {
             pickup = Location.parseLocation(System.getProperty("pickup"));
             dropoff = Location.parseLocation(System.getProperty("dropoff"));
