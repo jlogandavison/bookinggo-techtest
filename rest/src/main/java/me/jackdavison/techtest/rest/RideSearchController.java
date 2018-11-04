@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import me.jackdavison.techtest.client.types.Location;
 import me.jackdavison.techtest.client.types.Ride;
+import me.jackdavison.techtest.client.AggregateProvider;
 import me.jackdavison.techtest.client.HttpApiProvider;
 import me.jackdavison.techtest.client.Provider;
 
@@ -20,7 +21,12 @@ public class RideSearchController {
     private final Provider provider;
 
     RideSearchController() throws URISyntaxException {
-        this.provider = new HttpApiProvider(new URI("https://techtest.rideways.com/dave/"));
+        // This kind of configuration probably belongs in a config file IRL
+        AggregateProvider provider = new AggregateProvider();
+        provider.includeProvider(new HttpApiProvider(new URI("https://techtest.rideways.com/dave/")));
+        provider.includeProvider(new HttpApiProvider(new URI("https://techtest.rideways.com/eric/")));
+        provider.includeProvider(new HttpApiProvider(new URI("https://techtest.rideways.com/jeff/")));
+        this.provider = provider;
     }
 
     @GetMapping("/")
