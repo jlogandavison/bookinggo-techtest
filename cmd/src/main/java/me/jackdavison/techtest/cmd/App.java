@@ -19,8 +19,13 @@ public class App implements Provider
 
     public static void main( String[] args )
     {
+        // Get rides from provider(s)
         List<Ride> rides = provider.getRides(null, null);
+
+        // Sort output by price
         Collections.sort(rides, new Ride.PriceComparator());
+
+        // Print output
         System.out.println(outputbuilder.buildOutput(rides));
     }
 
