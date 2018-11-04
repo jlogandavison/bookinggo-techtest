@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import me.jackdavison.techtest.client.AggregateProvider;
 import me.jackdavison.techtest.client.HttpApiProvider;
 import me.jackdavison.techtest.client.Provider;
 import me.jackdavison.techtest.client.types.Location;
@@ -22,7 +23,11 @@ public class App implements Provider
 
     public static void main( String[] args ) throws URISyntaxException
     {
-        provider = new HttpApiProvider(new URI("https://techtest.rideways.com/dave/"));
+        AggregateProvider p = new AggregateProvider();
+        p.includeProvider(new HttpApiProvider(new URI("https://techtest.rideways.com/dave/")));
+        p.includeProvider(new HttpApiProvider(new URI("https://techtest.rideways.com/eric/")));
+        p.includeProvider(new HttpApiProvider(new URI("https://techtest.rideways.com/jeff/")));
+        provider = p;
 
         // Parse commandline input
         Location pickup = null, dropoff = null;
