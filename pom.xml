@@ -10,5 +10,6 @@
   <modules>
     <module>client</module>
     <module>cmd</module>
+    <module>rest</module>
   </modules>
 </project>
