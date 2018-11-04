@@ -24,7 +24,7 @@ To run the commandline application use the command:
 java -jar \
     -Dpickup={lat,long} \
     -Ddropoff={lat,long} \
-    cmd/target/cmd/frontend_cmd-1.0-SNAPSHOT-jar-with-dependencies.jar 
+    cmd/target/cmd-1.0-SNAPSHOT-jar-with-dependencies.jar 
 ```
 
 ## Part 2

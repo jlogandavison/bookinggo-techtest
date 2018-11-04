@@ -6,10 +6,10 @@
     <artifactId>techtest</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>frontend_cmd</artifactId>
+  <artifactId>cmd</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>frontend_cmd</name>
+  <name>cmd</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
