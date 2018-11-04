@@ -19,8 +19,18 @@ public class App implements Provider
 
     public static void main( String[] args )
     {
+        // Parse commandline input
+        Location pickup, dropoff;
+        try {
+            pickup = Location.parseLocation(System.getProperty("pickup"));
+            dropoff = Location.parseLocation(System.getProperty("dropoff"));
+        } catch(IllegalArgumentException exception) {
+            System.err.println(exception.getMessage());
+            System.exit(1);
+        }
+
         // Get rides from provider(s)
-        List<Ride> rides = provider.getRides(null, null);
+        List<Ride> rides = provider.getRides(pickup, dropoff);
 
         // Sort output by price
         Collections.sort(rides, new Ride.PriceComparator());
