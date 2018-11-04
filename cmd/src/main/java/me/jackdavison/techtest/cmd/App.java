@@ -14,11 +14,12 @@ import me.jackdavison.techtest.cmd.RideListOutputBuilder;
 public class App implements Provider
 {
 
+    private static Provider provider = new App();
     private static OutputBuilder outputbuilder = new RideListOutputBuilder();
 
     public static void main( String[] args )
     {
-        List<Ride> rides = new App().getRides(null, null);
+        List<Ride> rides = provider.getRides(null, null);
         Collections.sort(rides, new Ride.PriceComparator());
         System.out.println(outputbuilder.buildOutput(rides));
     }
